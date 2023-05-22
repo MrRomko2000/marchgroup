@@ -1,0 +1,32 @@
+---
+- name: Install AWS CloudWatch agent
+  hosts: all
+  user: root
+  become: yes
+  tasks:
+    - name: Install required packages
+      package:
+        name: unzip
+        state: present
+
+    - name: Download AWS CloudWatch Agent RPM
+      get_url:
+        url: "https://s3.amazonaws.com/amazoncloudwatch-agent/centos/amd64/latest/amazon-cloudwatch-agent.rpm"
+        dest: "/tmp/cloudwatch_agent.rpm"
+        mode: '0644'
+      register: download_result
+      failed_when: download_result is failed
+
+    - name: Install AWS CloudWatch agent
+      yum:
+        name: /tmp/cloudwatch_agent.rpm
+        state: present
+      notify: Restart CloudWatch agent
+
+    - name: Configure AWS CloudWatch agent
+      template:
+        src: cloudwatch-agent-config.json.j2
+        dest: /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
+      notify: Restart CloudWatch agent
+      
+    
