@@ -1,16 +1,11 @@
-- name: Package installer
-  hosts: all
-  user: root
-  tasks:
-
-  - name: Install a list of packages
-    yum:
-      name: "{{ item }}"
-      state: present
-    with_items:
-    - telnet
-    - elinks
-    - wget
-    - unzip
+- name: Install a list of packages
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+  - telnet
+  - elinks
+  - wget
+  - unzip
     
   

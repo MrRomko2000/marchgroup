@@ -1,0 +1,7 @@
+---
+- name: Run roles
+  hosts: all
+  roles: 
+  - first_role
+  - second_role
+  - third_role
