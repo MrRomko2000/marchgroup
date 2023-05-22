@@ -1,0 +1,4 @@
+[centos]
+mike                    ansible_host=198.199.76.243
+olenka                  ansible_host=165.22.189.96
+persona                 ansible_host=159.203.179.186

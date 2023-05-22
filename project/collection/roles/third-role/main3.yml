@@ -1,0 +1,5 @@
+---
+- name: Install Datadog agent
+  hosts: all
+  roles:
+    - datadog.datadog
