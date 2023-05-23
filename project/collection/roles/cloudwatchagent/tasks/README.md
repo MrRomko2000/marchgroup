@@ -1,3 +1,1 @@
-# Ansible Collection - project.collection
-
-Documentation for the collection.
+ansible-playbook -i hosts main2.yml
